@@ -1,42 +1,38 @@
 package site.aoba.hotelmanagement.infrastructure.models;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
 import lombok.Data;
 import site.aoba.hotelmanagement.architecture.infrastructure.model.IEntityModel;
 
+import java.math.BigDecimal;
+
 /**
  * room
- * @author 
+ *
+ * @author
  */
 @Data
 public class RoomModel implements IEntityModel<Integer> {
+    private static final long serialVersionUID = 1L;
     /**
      * 房间编号
      */
     private Integer roomId;
-
     /**
      * 房间楼层号
      */
     private Integer roomLevel;
-
     /**
      * 房间号
      */
     private Integer roomNumber;
-
     /**
      * 房间价格
      */
     private BigDecimal roomPrice;
-
     /**
      * 房间类型编号
      */
     private Integer roomTypeId;
-
-    private static final long serialVersionUID = 1L;
 
     @Override
     public Integer getId() {

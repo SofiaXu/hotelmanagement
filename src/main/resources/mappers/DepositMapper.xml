@@ -1,60 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.aoba.hotelmanagement.infrastructure.mappers.DepositMapper">
-  <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.DepositModel">
-    <id column="deposit_id" jdbcType="BIGINT" property="depositId" />
-    <result column="deposit_customer_id" jdbcType="INTEGER" property="depositCustomerId" />
-    <result column="deposit_book_id" jdbcType="BIGINT" property="depositBookId" />
-    <result column="deposit_price" jdbcType="DECIMAL" property="depositPrice" />
-    <result column="deposit_created_time" jdbcType="TIMESTAMP" property="depositCreatedTime" />
-    <result column="deposit_user_id" jdbcType="INTEGER" property="depositUserId" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    deposit_id, deposit_customer_id, deposit_book_id, deposit_price, deposit_created_time, 
+    <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.DepositModel">
+        <id column="deposit_id" jdbcType="BIGINT" property="depositId"/>
+        <result column="deposit_customer_id" jdbcType="INTEGER" property="depositCustomerId"/>
+        <result column="deposit_book_id" jdbcType="BIGINT" property="depositBookId"/>
+        <result column="deposit_price" jdbcType="DECIMAL" property="depositPrice"/>
+        <result column="deposit_created_time" jdbcType="TIMESTAMP" property="depositCreatedTime"/>
+        <result column="deposit_user_id" jdbcType="INTEGER" property="depositUserId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        deposit_id, deposit_customer_id, deposit_book_id, deposit_price, deposit_created_time,
     deposit_user_id
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from deposit
-    where deposit_id = #{depositId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from deposit
-    where deposit_id = #{depositId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" keyColumn="deposit_id" keyProperty="depositId" parameterType="site.aoba.hotelmanagement.infrastructure.models.DepositModel" useGeneratedKeys="true">
-    insert into deposit (deposit_customer_id, deposit_book_id, 
-      deposit_price, deposit_created_time, deposit_user_id
-      )
-    values (#{depositCustomerId,jdbcType=INTEGER}, #{depositBookId,jdbcType=BIGINT}, 
-      #{depositPrice,jdbcType=DECIMAL}, #{depositCreatedTime,jdbcType=TIMESTAMP}, #{depositUserId,jdbcType=INTEGER}
-      )
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.DepositModel">
-    update deposit
-    <set>
-      <if test="depositCustomerId != null">
-        deposit_customer_id = #{depositCustomerId,jdbcType=INTEGER},
-      </if>
-      <if test="depositBookId != null">
-        deposit_book_id = #{depositBookId,jdbcType=BIGINT},
-      </if>
-      <if test="depositPrice != null">
-        deposit_price = #{depositPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="depositCreatedTime != null">
-        deposit_created_time = #{depositCreatedTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="depositUserId != null">
-        deposit_user_id = #{depositUserId,jdbcType=INTEGER},
-      </if>
-    </set>
-    where deposit_id = #{depositId,jdbcType=BIGINT}
-  </update>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from deposit
-  </select>
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from deposit
+        where deposit_id = #{depositId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from deposit
+        where deposit_id = #{depositId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="deposit_id" keyProperty="depositId"
+            parameterType="site.aoba.hotelmanagement.infrastructure.models.DepositModel" useGeneratedKeys="true">
+        insert into deposit (deposit_customer_id, deposit_book_id,
+                             deposit_price, deposit_created_time, deposit_user_id)
+        values (#{depositCustomerId,jdbcType=INTEGER}, #{depositBookId,jdbcType=BIGINT},
+                #{depositPrice,jdbcType=DECIMAL}, #{depositCreatedTime,jdbcType=TIMESTAMP},
+                #{depositUserId,jdbcType=INTEGER})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.DepositModel">
+        update deposit
+        <set>
+            <if test="depositCustomerId != null">
+                deposit_customer_id = #{depositCustomerId,jdbcType=INTEGER},
+            </if>
+            <if test="depositBookId != null">
+                deposit_book_id = #{depositBookId,jdbcType=BIGINT},
+            </if>
+            <if test="depositPrice != null">
+                deposit_price = #{depositPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="depositCreatedTime != null">
+                deposit_created_time = #{depositCreatedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="depositUserId != null">
+                deposit_user_id = #{depositUserId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where deposit_id = #{depositId,jdbcType=BIGINT}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from deposit
+    </select>
 </mapper>

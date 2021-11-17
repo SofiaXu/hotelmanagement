@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.aoba.hotelmanagement.infrastructure.mappers.ChargeMapper">
-  <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.ChargeModel">
-    <id column="charge_id" jdbcType="BIGINT" property="chargeId" />
-    <result column="charge_room_current_id" jdbcType="BIGINT" property="chargeRoomCurrentId" />
-    <result column="charge_customer_id" jdbcType="INTEGER" property="chargeCustomerId" />
-    <result column="charge_price" jdbcType="DECIMAL" property="chargePrice" />
-    <result column="charge_summary" jdbcType="VARCHAR" property="chargeSummary" />
-    <result column="charge_comment" jdbcType="VARCHAR" property="chargeComment" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    charge_id, charge_room_current_id, charge_customer_id, charge_price, charge_summary, 
+    <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.ChargeModel">
+        <id column="charge_id" jdbcType="BIGINT" property="chargeId"/>
+        <result column="charge_room_current_id" jdbcType="BIGINT" property="chargeRoomCurrentId"/>
+        <result column="charge_customer_id" jdbcType="INTEGER" property="chargeCustomerId"/>
+        <result column="charge_price" jdbcType="DECIMAL" property="chargePrice"/>
+        <result column="charge_summary" jdbcType="VARCHAR" property="chargeSummary"/>
+        <result column="charge_comment" jdbcType="VARCHAR" property="chargeComment"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        charge_id, charge_room_current_id, charge_customer_id, charge_price, charge_summary,
     charge_comment
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from charge
-    where charge_id = #{chargeId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from charge
-    where charge_id = #{chargeId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" keyColumn="charge_id" keyProperty="chargeId" parameterType="site.aoba.hotelmanagement.infrastructure.models.ChargeModel" useGeneratedKeys="true">
-    insert into charge (charge_room_current_id, charge_customer_id, 
-      charge_price, charge_summary, charge_comment
-      )
-    values (#{chargeRoomCurrentId,jdbcType=BIGINT}, #{chargeCustomerId,jdbcType=INTEGER}, 
-      #{chargePrice,jdbcType=DECIMAL}, #{chargeSummary,jdbcType=VARCHAR}, #{chargeComment,jdbcType=VARCHAR}
-      )
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.ChargeModel">
-    update charge
-    <set>
-      <if test="chargeRoomCurrentId != null">
-        charge_room_current_id = #{chargeRoomCurrentId,jdbcType=BIGINT},
-      </if>
-      <if test="chargeCustomerId != null">
-        charge_customer_id = #{chargeCustomerId,jdbcType=INTEGER},
-      </if>
-      <if test="chargePrice != null">
-        charge_price = #{chargePrice,jdbcType=DECIMAL},
-      </if>
-      <if test="chargeSummary != null">
-        charge_summary = #{chargeSummary,jdbcType=VARCHAR},
-      </if>
-      <if test="chargeComment != null">
-        charge_comment = #{chargeComment,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where charge_id = #{chargeId,jdbcType=BIGINT}
-  </update>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from charge
-  </select>
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from charge
+        where charge_id = #{chargeId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from charge
+        where charge_id = #{chargeId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="charge_id" keyProperty="chargeId"
+            parameterType="site.aoba.hotelmanagement.infrastructure.models.ChargeModel" useGeneratedKeys="true">
+        insert into charge (charge_room_current_id, charge_customer_id,
+                            charge_price, charge_summary, charge_comment)
+        values (#{chargeRoomCurrentId,jdbcType=BIGINT}, #{chargeCustomerId,jdbcType=INTEGER},
+                #{chargePrice,jdbcType=DECIMAL}, #{chargeSummary,jdbcType=VARCHAR}, #{chargeComment,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.ChargeModel">
+        update charge
+        <set>
+            <if test="chargeRoomCurrentId != null">
+                charge_room_current_id = #{chargeRoomCurrentId,jdbcType=BIGINT},
+            </if>
+            <if test="chargeCustomerId != null">
+                charge_customer_id = #{chargeCustomerId,jdbcType=INTEGER},
+            </if>
+            <if test="chargePrice != null">
+                charge_price = #{chargePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="chargeSummary != null">
+                charge_summary = #{chargeSummary,jdbcType=VARCHAR},
+            </if>
+            <if test="chargeComment != null">
+                charge_comment = #{chargeComment,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where charge_id = #{chargeId,jdbcType=BIGINT}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from charge
+    </select>
 </mapper>

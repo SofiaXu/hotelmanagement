@@ -1,32 +1,30 @@
 package site.aoba.hotelmanagement.infrastructure.models;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
 import lombok.Data;
 import site.aoba.hotelmanagement.architecture.infrastructure.model.IEntityModel;
 
+import java.math.BigDecimal;
+
 /**
  * good
- * @author 
+ *
+ * @author
  */
 @Data
 public class GoodModel implements IEntityModel<Long> {
+    private static final long serialVersionUID = 1L;
     /**
      * 货物编号
      */
     private Long goodId;
-
     /**
      * 货物名称
      */
     private String goodName;
-
     /**
      * 货物数量
      */
     private BigDecimal goodCount;
-
-    private static final long serialVersionUID = 1L;
 
     @Override
     public Long getId() {

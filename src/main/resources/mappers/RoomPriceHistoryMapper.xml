@@ -1,60 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.aoba.hotelmanagement.infrastructure.mappers.RoomPriceHistoryMapper">
-  <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.RoomPriceHistoryModel">
-    <id column="room_price_history_id" jdbcType="BIGINT" property="roomPriceHistoryId" />
-    <result column="room_id" jdbcType="INTEGER" property="roomId" />
-    <result column="room_previous_price" jdbcType="DECIMAL" property="roomPreviousPrice" />
-    <result column="room_now_price" jdbcType="DECIMAL" property="roomNowPrice" />
-    <result column="room_price_changed_time" jdbcType="TIMESTAMP" property="roomPriceChangedTime" />
-    <result column="room_price_changed_user_id" jdbcType="INTEGER" property="roomPriceChangedUserId" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    room_price_history_id, room_id, room_previous_price, room_now_price, room_price_changed_time, 
+    <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.RoomPriceHistoryModel">
+        <id column="room_price_history_id" jdbcType="BIGINT" property="roomPriceHistoryId"/>
+        <result column="room_id" jdbcType="INTEGER" property="roomId"/>
+        <result column="room_previous_price" jdbcType="DECIMAL" property="roomPreviousPrice"/>
+        <result column="room_now_price" jdbcType="DECIMAL" property="roomNowPrice"/>
+        <result column="room_price_changed_time" jdbcType="TIMESTAMP" property="roomPriceChangedTime"/>
+        <result column="room_price_changed_user_id" jdbcType="INTEGER" property="roomPriceChangedUserId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        room_price_history_id, room_id, room_previous_price, room_now_price, room_price_changed_time,
     room_price_changed_user_id
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from room_price_history
-    where room_price_history_id = #{roomPriceHistoryId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from room_price_history
-    where room_price_history_id = #{roomPriceHistoryId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" keyColumn="room_price_history_id" keyProperty="roomPriceHistoryId" parameterType="site.aoba.hotelmanagement.infrastructure.models.RoomPriceHistoryModel" useGeneratedKeys="true">
-    insert into room_price_history (room_id, room_previous_price, room_now_price, 
-      room_price_changed_time, room_price_changed_user_id
-      )
-    values (#{roomId,jdbcType=INTEGER}, #{roomPreviousPrice,jdbcType=DECIMAL}, #{roomNowPrice,jdbcType=DECIMAL}, 
-      #{roomPriceChangedTime,jdbcType=TIMESTAMP}, #{roomPriceChangedUserId,jdbcType=INTEGER}
-      )
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.RoomPriceHistoryModel">
-    update room_price_history
-    <set>
-      <if test="roomId != null">
-        room_id = #{roomId,jdbcType=INTEGER},
-      </if>
-      <if test="roomPreviousPrice != null">
-        room_previous_price = #{roomPreviousPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="roomNowPrice != null">
-        room_now_price = #{roomNowPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="roomPriceChangedTime != null">
-        room_price_changed_time = #{roomPriceChangedTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="roomPriceChangedUserId != null">
-        room_price_changed_user_id = #{roomPriceChangedUserId,jdbcType=INTEGER},
-      </if>
-    </set>
-    where room_price_history_id = #{roomPriceHistoryId,jdbcType=BIGINT}
-  </update>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from room_price_history
-  </select>
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from room_price_history
+        where room_price_history_id = #{roomPriceHistoryId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from room_price_history
+        where room_price_history_id = #{roomPriceHistoryId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="room_price_history_id" keyProperty="roomPriceHistoryId"
+            parameterType="site.aoba.hotelmanagement.infrastructure.models.RoomPriceHistoryModel"
+            useGeneratedKeys="true">
+        insert into room_price_history (room_id, room_previous_price, room_now_price,
+                                        room_price_changed_time, room_price_changed_user_id)
+        values (#{roomId,jdbcType=INTEGER}, #{roomPreviousPrice,jdbcType=DECIMAL}, #{roomNowPrice,jdbcType=DECIMAL},
+                #{roomPriceChangedTime,jdbcType=TIMESTAMP}, #{roomPriceChangedUserId,jdbcType=INTEGER})
+    </insert>
+    <update id="updateByPrimaryKey"
+            parameterType="site.aoba.hotelmanagement.infrastructure.models.RoomPriceHistoryModel">
+        update room_price_history
+        <set>
+            <if test="roomId != null">
+                room_id = #{roomId,jdbcType=INTEGER},
+            </if>
+            <if test="roomPreviousPrice != null">
+                room_previous_price = #{roomPreviousPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="roomNowPrice != null">
+                room_now_price = #{roomNowPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="roomPriceChangedTime != null">
+                room_price_changed_time = #{roomPriceChangedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="roomPriceChangedUserId != null">
+                room_price_changed_user_id = #{roomPriceChangedUserId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where room_price_history_id = #{roomPriceHistoryId,jdbcType=BIGINT}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from room_price_history
+    </select>
 </mapper>

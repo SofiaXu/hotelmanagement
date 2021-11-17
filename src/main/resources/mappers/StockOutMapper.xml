@@ -1,64 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.aoba.hotelmanagement.infrastructure.mappers.StockOutMapper">
-  <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.StockOutModel">
-    <id column="stock_out_id" jdbcType="BIGINT" property="stockOutId" />
-    <result column="stock_out_good_id" jdbcType="BIGINT" property="stockOutGoodId" />
-    <result column="stock_out_time" jdbcType="TIMESTAMP" property="stockOutTime" />
-    <result column="stock_out_user_id" jdbcType="INTEGER" property="stockOutUserId" />
-    <result column="stock_out_stock_in_id" jdbcType="BIGINT" property="stockOutStockInId" />
-    <result column="stock_out_destination" jdbcType="VARCHAR" property="stockOutDestination" />
-    <result column="stock_out_count" jdbcType="DECIMAL" property="stockOutCount" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    stock_out_id, stock_out_good_id, stock_out_time, stock_out_user_id, stock_out_stock_in_id, 
+    <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.StockOutModel">
+        <id column="stock_out_id" jdbcType="BIGINT" property="stockOutId"/>
+        <result column="stock_out_good_id" jdbcType="BIGINT" property="stockOutGoodId"/>
+        <result column="stock_out_time" jdbcType="TIMESTAMP" property="stockOutTime"/>
+        <result column="stock_out_user_id" jdbcType="INTEGER" property="stockOutUserId"/>
+        <result column="stock_out_stock_in_id" jdbcType="BIGINT" property="stockOutStockInId"/>
+        <result column="stock_out_destination" jdbcType="VARCHAR" property="stockOutDestination"/>
+        <result column="stock_out_count" jdbcType="DECIMAL" property="stockOutCount"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        stock_out_id, stock_out_good_id, stock_out_time, stock_out_user_id, stock_out_stock_in_id,
     stock_out_destination, stock_out_count
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from stock_out
-    where stock_out_id = #{stockOutId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from stock_out
-    where stock_out_id = #{stockOutId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" keyColumn="stock_out_id" keyProperty="stockOutId" parameterType="site.aoba.hotelmanagement.infrastructure.models.StockOutModel" useGeneratedKeys="true">
-    insert into stock_out (stock_out_good_id, stock_out_time, stock_out_user_id, 
-      stock_out_stock_in_id, stock_out_destination, 
-      stock_out_count)
-    values (#{stockOutGoodId,jdbcType=BIGINT}, #{stockOutTime,jdbcType=TIMESTAMP}, #{stockOutUserId,jdbcType=INTEGER}, 
-      #{stockOutStockInId,jdbcType=BIGINT}, #{stockOutDestination,jdbcType=VARCHAR}, 
-      #{stockOutCount,jdbcType=DECIMAL})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.StockOutModel">
-    update stock_out
-    <set>
-      <if test="stockOutGoodId != null">
-        stock_out_good_id = #{stockOutGoodId,jdbcType=BIGINT},
-      </if>
-      <if test="stockOutTime != null">
-        stock_out_time = #{stockOutTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="stockOutUserId != null">
-        stock_out_user_id = #{stockOutUserId,jdbcType=INTEGER},
-      </if>
-      <if test="stockOutStockInId != null">
-        stock_out_stock_in_id = #{stockOutStockInId,jdbcType=BIGINT},
-      </if>
-      <if test="stockOutDestination != null">
-        stock_out_destination = #{stockOutDestination,jdbcType=VARCHAR},
-      </if>
-      <if test="stockOutCount != null">
-        stock_out_count = #{stockOutCount,jdbcType=DECIMAL},
-      </if>
-    </set>
-    where stock_out_id = #{stockOutId,jdbcType=BIGINT}
-  </update>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from stock_out
-  </select>
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from stock_out
+        where stock_out_id = #{stockOutId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from stock_out
+        where stock_out_id = #{stockOutId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="stock_out_id" keyProperty="stockOutId"
+            parameterType="site.aoba.hotelmanagement.infrastructure.models.StockOutModel" useGeneratedKeys="true">
+        insert into stock_out (stock_out_good_id, stock_out_time, stock_out_user_id,
+                               stock_out_stock_in_id, stock_out_destination,
+                               stock_out_count)
+        values (#{stockOutGoodId,jdbcType=BIGINT}, #{stockOutTime,jdbcType=TIMESTAMP},
+                #{stockOutUserId,jdbcType=INTEGER},
+                #{stockOutStockInId,jdbcType=BIGINT}, #{stockOutDestination,jdbcType=VARCHAR},
+                #{stockOutCount,jdbcType=DECIMAL})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.StockOutModel">
+        update stock_out
+        <set>
+            <if test="stockOutGoodId != null">
+                stock_out_good_id = #{stockOutGoodId,jdbcType=BIGINT},
+            </if>
+            <if test="stockOutTime != null">
+                stock_out_time = #{stockOutTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="stockOutUserId != null">
+                stock_out_user_id = #{stockOutUserId,jdbcType=INTEGER},
+            </if>
+            <if test="stockOutStockInId != null">
+                stock_out_stock_in_id = #{stockOutStockInId,jdbcType=BIGINT},
+            </if>
+            <if test="stockOutDestination != null">
+                stock_out_destination = #{stockOutDestination,jdbcType=VARCHAR},
+            </if>
+            <if test="stockOutCount != null">
+                stock_out_count = #{stockOutCount,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where stock_out_id = #{stockOutId,jdbcType=BIGINT}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from stock_out
+    </select>
 </mapper>

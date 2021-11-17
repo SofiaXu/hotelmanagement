@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface IEntityModelMapper<TId, TEntityModel extends IEntityModel<TId>> extends IModelMapper<TEntityModel> {
     int deleteByPrimaryKey(TId id);
+
     int insert(TEntityModel record);
+
     TEntityModel selectByPrimaryKey(TId id);
+
     List<TEntityModel> selectAll();
+
     int updateByPrimaryKey(TEntityModel record);
 }

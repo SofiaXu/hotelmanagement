@@ -1,68 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.aoba.hotelmanagement.infrastructure.mappers.StockInMapper">
-  <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.StockInModel">
-    <id column="stock_in_id" jdbcType="BIGINT" property="stockInId" />
-    <result column="stock_in_contract_id" jdbcType="BIGINT" property="stockInContractId" />
-    <result column="stock_in_good_id" jdbcType="BIGINT" property="stockInGoodId" />
-    <result column="stock_in_time" jdbcType="TIMESTAMP" property="stockInTime" />
-    <result column="stock_in_count" jdbcType="DECIMAL" property="stockInCount" />
-    <result column="stock_in_price" jdbcType="DECIMAL" property="stockInPrice" />
-    <result column="stock_in_receipt_id" jdbcType="VARCHAR" property="stockInReceiptId" />
-    <result column="stock_in_user_id" jdbcType="INTEGER" property="stockInUserId" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    stock_in_id, stock_in_contract_id, stock_in_good_id, stock_in_time, stock_in_count, 
+    <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.StockInModel">
+        <id column="stock_in_id" jdbcType="BIGINT" property="stockInId"/>
+        <result column="stock_in_contract_id" jdbcType="BIGINT" property="stockInContractId"/>
+        <result column="stock_in_good_id" jdbcType="BIGINT" property="stockInGoodId"/>
+        <result column="stock_in_time" jdbcType="TIMESTAMP" property="stockInTime"/>
+        <result column="stock_in_count" jdbcType="DECIMAL" property="stockInCount"/>
+        <result column="stock_in_price" jdbcType="DECIMAL" property="stockInPrice"/>
+        <result column="stock_in_receipt_id" jdbcType="VARCHAR" property="stockInReceiptId"/>
+        <result column="stock_in_user_id" jdbcType="INTEGER" property="stockInUserId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        stock_in_id, stock_in_contract_id, stock_in_good_id, stock_in_time, stock_in_count,
     stock_in_price, stock_in_receipt_id, stock_in_user_id
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from stock_in
-    where stock_in_id = #{stockInId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from stock_in
-    where stock_in_id = #{stockInId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" keyColumn="stock_in_id" keyProperty="stockInId" parameterType="site.aoba.hotelmanagement.infrastructure.models.StockInModel" useGeneratedKeys="true">
-    insert into stock_in (stock_in_contract_id, stock_in_good_id, stock_in_time, 
-      stock_in_count, stock_in_price, stock_in_receipt_id, 
-      stock_in_user_id)
-    values (#{stockInContractId,jdbcType=BIGINT}, #{stockInGoodId,jdbcType=BIGINT}, #{stockInTime,jdbcType=TIMESTAMP}, 
-      #{stockInCount,jdbcType=DECIMAL}, #{stockInPrice,jdbcType=DECIMAL}, #{stockInReceiptId,jdbcType=VARCHAR}, 
-      #{stockInUserId,jdbcType=INTEGER})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.StockInModel">
-    update stock_in
-    <set>
-      <if test="stockInContractId != null">
-        stock_in_contract_id = #{stockInContractId,jdbcType=BIGINT},
-      </if>
-      <if test="stockInGoodId != null">
-        stock_in_good_id = #{stockInGoodId,jdbcType=BIGINT},
-      </if>
-      <if test="stockInTime != null">
-        stock_in_time = #{stockInTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="stockInCount != null">
-        stock_in_count = #{stockInCount,jdbcType=DECIMAL},
-      </if>
-      <if test="stockInPrice != null">
-        stock_in_price = #{stockInPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="stockInReceiptId != null">
-        stock_in_receipt_id = #{stockInReceiptId,jdbcType=VARCHAR},
-      </if>
-      <if test="stockInUserId != null">
-        stock_in_user_id = #{stockInUserId,jdbcType=INTEGER},
-      </if>
-    </set>
-    where stock_in_id = #{stockInId,jdbcType=BIGINT}
-  </update>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from stock_in
-  </select>
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from stock_in
+        where stock_in_id = #{stockInId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from stock_in
+        where stock_in_id = #{stockInId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="stock_in_id" keyProperty="stockInId"
+            parameterType="site.aoba.hotelmanagement.infrastructure.models.StockInModel" useGeneratedKeys="true">
+        insert into stock_in (stock_in_contract_id, stock_in_good_id, stock_in_time,
+                              stock_in_count, stock_in_price, stock_in_receipt_id,
+                              stock_in_user_id)
+        values (#{stockInContractId,jdbcType=BIGINT}, #{stockInGoodId,jdbcType=BIGINT},
+                #{stockInTime,jdbcType=TIMESTAMP},
+                #{stockInCount,jdbcType=DECIMAL}, #{stockInPrice,jdbcType=DECIMAL},
+                #{stockInReceiptId,jdbcType=VARCHAR},
+                #{stockInUserId,jdbcType=INTEGER})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.StockInModel">
+        update stock_in
+        <set>
+            <if test="stockInContractId != null">
+                stock_in_contract_id = #{stockInContractId,jdbcType=BIGINT},
+            </if>
+            <if test="stockInGoodId != null">
+                stock_in_good_id = #{stockInGoodId,jdbcType=BIGINT},
+            </if>
+            <if test="stockInTime != null">
+                stock_in_time = #{stockInTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="stockInCount != null">
+                stock_in_count = #{stockInCount,jdbcType=DECIMAL},
+            </if>
+            <if test="stockInPrice != null">
+                stock_in_price = #{stockInPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="stockInReceiptId != null">
+                stock_in_receipt_id = #{stockInReceiptId,jdbcType=VARCHAR},
+            </if>
+            <if test="stockInUserId != null">
+                stock_in_user_id = #{stockInUserId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where stock_in_id = #{stockInId,jdbcType=BIGINT}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from stock_in
+    </select>
 </mapper>

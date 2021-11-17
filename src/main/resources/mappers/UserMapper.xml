@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.aoba.hotelmanagement.infrastructure.mappers.UserMapper">
-  <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.UserModel">
-    <id column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="user_real_name" jdbcType="VARCHAR" property="userRealName" />
-    <result column="user_type_id" jdbcType="INTEGER" property="userTypeId" />
-    <result column="user_age" jdbcType="INTEGER" property="userAge" />
-    <result column="user_gender" jdbcType="BIT" property="userGender" />
-    <result column="user_password_hash" jdbcType="CHAR" property="userPasswordHash" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    user_id, user_name, user_real_name, user_type_id, user_age, user_gender, user_password_hash
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where user_id = #{userId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user
-    where user_id = #{userId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="site.aoba.hotelmanagement.infrastructure.models.UserModel" useGeneratedKeys="true">
-    insert into user (user_name, user_real_name, user_type_id, 
-      user_age, user_gender, user_password_hash
-      )
-    values (#{userName,jdbcType=VARCHAR}, #{userRealName,jdbcType=VARCHAR}, #{userTypeId,jdbcType=INTEGER}, 
-      #{userAge,jdbcType=INTEGER}, #{userGender,jdbcType=BIT}, #{userPasswordHash,jdbcType=CHAR}
-      )
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.UserModel">
-    update user
-    <set>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="userRealName != null">
-        user_real_name = #{userRealName,jdbcType=VARCHAR},
-      </if>
-      <if test="userTypeId != null">
-        user_type_id = #{userTypeId,jdbcType=INTEGER},
-      </if>
-      <if test="userAge != null">
-        user_age = #{userAge,jdbcType=INTEGER},
-      </if>
-      <if test="userGender != null">
-        user_gender = #{userGender,jdbcType=BIT},
-      </if>
-      <if test="userPasswordHash != null">
-        user_password_hash = #{userPasswordHash,jdbcType=CHAR},
-      </if>
-    </set>
-    where user_id = #{userId,jdbcType=INTEGER}
-  </update>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from user
-  </select>
+    <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.UserModel">
+        <id column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_real_name" jdbcType="VARCHAR" property="userRealName"/>
+        <result column="user_type_id" jdbcType="INTEGER" property="userTypeId"/>
+        <result column="user_age" jdbcType="INTEGER" property="userAge"/>
+        <result column="user_gender" jdbcType="BIT" property="userGender"/>
+        <result column="user_password_hash" jdbcType="CHAR" property="userPasswordHash"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        user_id, user_name, user_real_name, user_type_id, user_age, user_gender, user_password_hash
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from user
+        where user_id = #{userId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="user_id" keyProperty="userId"
+            parameterType="site.aoba.hotelmanagement.infrastructure.models.UserModel" useGeneratedKeys="true">
+        insert into user (user_name, user_real_name, user_type_id,
+                          user_age, user_gender, user_password_hash)
+        values (#{userName,jdbcType=VARCHAR}, #{userRealName,jdbcType=VARCHAR}, #{userTypeId,jdbcType=INTEGER},
+                #{userAge,jdbcType=INTEGER}, #{userGender,jdbcType=BIT}, #{userPasswordHash,jdbcType=CHAR})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.UserModel">
+        update user
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userRealName != null">
+                user_real_name = #{userRealName,jdbcType=VARCHAR},
+            </if>
+            <if test="userTypeId != null">
+                user_type_id = #{userTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="userAge != null">
+                user_age = #{userAge,jdbcType=INTEGER},
+            </if>
+            <if test="userGender != null">
+                user_gender = #{userGender,jdbcType=BIT},
+            </if>
+            <if test="userPasswordHash != null">
+                user_password_hash = #{userPasswordHash,jdbcType=CHAR},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+    </select>
 </mapper>

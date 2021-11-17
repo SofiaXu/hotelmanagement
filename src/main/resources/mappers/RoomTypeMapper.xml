@@ -1,39 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.aoba.hotelmanagement.infrastructure.mappers.RoomTypeMapper">
-  <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.RoomTypeModel">
-    <id column="room_type_id" jdbcType="INTEGER" property="roomTypeId" />
-    <result column="room_type_name" jdbcType="VARCHAR" property="roomTypeName" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    room_type_id, room_type_name
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from room_type
-    where room_type_id = #{roomTypeId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from room_type
-    where room_type_id = #{roomTypeId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" keyColumn="room_type_id" keyProperty="roomTypeId" parameterType="site.aoba.hotelmanagement.infrastructure.models.RoomTypeModel" useGeneratedKeys="true">
-    insert into room_type (room_type_name)
-    values (#{roomTypeName,jdbcType=VARCHAR})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.RoomTypeModel">
-    update room_type
-    <set>
-      <if test="roomTypeName != null">
-        room_type_name = #{roomTypeName,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where room_type_id = #{roomTypeId,jdbcType=INTEGER}
-  </update>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from room_type
-  </select>
+    <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.RoomTypeModel">
+        <id column="room_type_id" jdbcType="INTEGER" property="roomTypeId"/>
+        <result column="room_type_name" jdbcType="VARCHAR" property="roomTypeName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        room_type_id, room_type_name
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from room_type
+        where room_type_id = #{roomTypeId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from room_type
+        where room_type_id = #{roomTypeId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="room_type_id" keyProperty="roomTypeId"
+            parameterType="site.aoba.hotelmanagement.infrastructure.models.RoomTypeModel" useGeneratedKeys="true">
+        insert into room_type (room_type_name)
+        values (#{roomTypeName,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.RoomTypeModel">
+        update room_type
+        <set>
+            <if test="roomTypeName != null">
+                room_type_name = #{roomTypeName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where room_type_id = #{roomTypeId,jdbcType=INTEGER}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from room_type
+    </select>
 </mapper>

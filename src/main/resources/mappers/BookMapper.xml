@@ -1,64 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.aoba.hotelmanagement.infrastructure.mappers.BookMapper">
-  <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.BookModel">
-    <id column="book_id" jdbcType="BIGINT" property="bookId" />
-    <result column="book_customer_id" jdbcType="INTEGER" property="bookCustomerId" />
-    <result column="book_user_id" jdbcType="INTEGER" property="bookUserId" />
-    <result column="book_created_time" jdbcType="TIMESTAMP" property="bookCreatedTime" />
-    <result column="book_start_time" jdbcType="TIMESTAMP" property="bookStartTime" />
-    <result column="book_end_time" jdbcType="TIMESTAMP" property="bookEndTime" />
-    <result column="book_is_checked_in" jdbcType="BIT" property="bookIsCheckedIn" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    book_id, book_customer_id, book_user_id, book_created_time, book_start_time, book_end_time, 
+    <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.BookModel">
+        <id column="book_id" jdbcType="BIGINT" property="bookId"/>
+        <result column="book_customer_id" jdbcType="INTEGER" property="bookCustomerId"/>
+        <result column="book_user_id" jdbcType="INTEGER" property="bookUserId"/>
+        <result column="book_created_time" jdbcType="TIMESTAMP" property="bookCreatedTime"/>
+        <result column="book_start_time" jdbcType="TIMESTAMP" property="bookStartTime"/>
+        <result column="book_end_time" jdbcType="TIMESTAMP" property="bookEndTime"/>
+        <result column="book_is_checked_in" jdbcType="BIT" property="bookIsCheckedIn"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        book_id, book_customer_id, book_user_id, book_created_time, book_start_time, book_end_time,
     book_is_checked_in
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from book
-    where book_id = #{bookId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from book
-    where book_id = #{bookId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" keyColumn="book_id" keyProperty="bookId" parameterType="site.aoba.hotelmanagement.infrastructure.models.BookModel" useGeneratedKeys="true">
-    insert into book (book_customer_id, book_user_id, book_created_time,
-      book_start_time, book_end_time, book_is_checked_in
-      )
-    values (#{bookCustomerId,jdbcType=INTEGER}, #{bookUserId,jdbcType=INTEGER}, #{bookCreatedTime,jdbcType=TIMESTAMP},
-      #{bookStartTime,jdbcType=TIMESTAMP}, #{bookEndTime,jdbcType=TIMESTAMP}, #{bookIsCheckedIn,jdbcType=BIT}
-      )
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.BookModel">
-    update book
-    <set>
-      <if test="bookCustomerId != null">
-        book_customer_id = #{bookCustomerId,jdbcType=INTEGER},
-      </if>
-      <if test="bookUserId != null">
-        book_user_id = #{bookUserId,jdbcType=INTEGER},
-      </if>
-      <if test="bookCreatedTime != null">
-        book_created_time = #{bookCreatedTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="bookStartTime != null">
-        book_start_time = #{bookStartTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="bookEndTime != null">
-        book_end_time = #{bookEndTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="bookIsCheckedIn != null">
-        book_is_checked_in = #{bookIsCheckedIn,jdbcType=BIT},
-      </if>
-    </set>
-    where book_id = #{bookId,jdbcType=BIGINT}
-  </update>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from book
-  </select>
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from book
+        where book_id = #{bookId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from book
+        where book_id = #{bookId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="book_id" keyProperty="bookId"
+            parameterType="site.aoba.hotelmanagement.infrastructure.models.BookModel" useGeneratedKeys="true">
+        insert into book (book_customer_id, book_user_id, book_created_time,
+                          book_start_time, book_end_time, book_is_checked_in)
+        values (#{bookCustomerId,jdbcType=INTEGER}, #{bookUserId,jdbcType=INTEGER},
+                #{bookCreatedTime,jdbcType=TIMESTAMP},
+                #{bookStartTime,jdbcType=TIMESTAMP}, #{bookEndTime,jdbcType=TIMESTAMP}, #{bookIsCheckedIn,jdbcType=BIT})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.BookModel">
+        update book
+        <set>
+            <if test="bookCustomerId != null">
+                book_customer_id = #{bookCustomerId,jdbcType=INTEGER},
+            </if>
+            <if test="bookUserId != null">
+                book_user_id = #{bookUserId,jdbcType=INTEGER},
+            </if>
+            <if test="bookCreatedTime != null">
+                book_created_time = #{bookCreatedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bookStartTime != null">
+                book_start_time = #{bookStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bookEndTime != null">
+                book_end_time = #{bookEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bookIsCheckedIn != null">
+                book_is_checked_in = #{bookIsCheckedIn,jdbcType=BIT},
+            </if>
+        </set>
+        where book_id = #{bookId,jdbcType=BIGINT}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from book
+    </select>
 </mapper>

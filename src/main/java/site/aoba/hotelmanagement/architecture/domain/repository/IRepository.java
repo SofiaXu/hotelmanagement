@@ -1,9 +1,9 @@
 package site.aoba.hotelmanagement.architecture.domain.repository;
 
-import site.aoba.hotelmanagement.architecture.domain.model.IAggregateRoot;
 import site.aoba.hotelmanagement.architecture.domain.model.IEntity;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public interface IRepository<TEntity extends IEntity, TId> {
     List<TEntity> getEntities(long pageSize, long pageIndex);
@@ -13,8 +13,8 @@ public interface IRepository<TEntity extends IEntity, TId> {
     void updateEntity(TEntity entity);
     void createEntity(TEntity entity);
     void deleteEntity(TId id);
-    List<TEntity> searchEntities(long pageSize, long pageIndex);
-    List<TEntity> searchEntities(long pageSize, long pageIndex, boolean refresh);
+    List<TEntity> searchEntities(Predicate<TEntity> entityPredicate, long pageSize, long pageIndex);
+    List<TEntity> searchEntities(Predicate<TEntity> entityPredicate, long pageSize, long pageIndex, boolean refresh);
     void clearItemCache(TId id);
     void clearItemsCache();
 }

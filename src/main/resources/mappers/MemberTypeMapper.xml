@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.aoba.hotelmanagement.infrastructure.mappers.MemberTypeMapper">
+  <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.MemberTypeModel">
+    <id column="member_type_id" jdbcType="INTEGER" property="memberTypeId" />
+    <result column="member_type_name" jdbcType="VARCHAR" property="memberTypeName" />
+    <result column="member_type_discount" jdbcType="FLOAT" property="memberTypeDiscount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    member_type_id, member_type_name, member_type_discount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member_type
+    where member_type_id = #{memberTypeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member_type
+    where member_type_id = #{memberTypeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="member_type_id" keyProperty="memberTypeId" parameterType="site.aoba.hotelmanagement.infrastructure.models.MemberTypeModel" useGeneratedKeys="true">
+    insert into member_type (member_type_name, member_type_discount)
+    values (#{memberTypeName,jdbcType=VARCHAR}, #{memberTypeDiscount,jdbcType=FLOAT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.MemberTypeModel">
+    update member_type
+    <set>
+      <if test="memberTypeName != null">
+        member_type_name = #{memberTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberTypeDiscount != null">
+        member_type_discount = #{memberTypeDiscount,jdbcType=FLOAT},
+      </if>
+    </set>
+    where member_type_id = #{memberTypeId,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from member_type
+  </select>
+</mapper>

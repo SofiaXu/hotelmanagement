@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.aoba.hotelmanagement.infrastructure.mappers.RoomCheckOutMapper">
+  <resultMap id="BaseResultMap" type="site.aoba.hotelmanagement.infrastructure.models.RoomCheckOutModel">
+    <id column="room_check_out_id" jdbcType="BIGINT" property="roomCheckOutId" />
+    <result column="room_check_out_time" jdbcType="TIMESTAMP" property="roomCheckOutTime" />
+    <result column="room_check_out_remain_price" jdbcType="DECIMAL" property="roomCheckOutRemainPrice" />
+    <result column="room_check_out_user_id" jdbcType="INTEGER" property="roomCheckOutUserId" />
+    <result column="room_check_out_created_time" jdbcType="TIMESTAMP" property="roomCheckOutCreatedTime" />
+    <result column="room_check_out_room_current_id" jdbcType="BIGINT" property="roomCheckOutRoomCurrentId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    room_check_out_id, room_check_out_time, room_check_out_remain_price, room_check_out_user_id, 
+    room_check_out_created_time, room_check_out_room_current_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from room_check_out
+    where room_check_out_id = #{roomCheckOutId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from room_check_out
+    where room_check_out_id = #{roomCheckOutId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="room_check_out_id" keyProperty="roomCheckOutId" parameterType="site.aoba.hotelmanagement.infrastructure.models.RoomCheckOutModel" useGeneratedKeys="true">
+    insert into room_check_out (room_check_out_time, room_check_out_remain_price, 
+      room_check_out_user_id, room_check_out_created_time, 
+      room_check_out_room_current_id)
+    values (#{roomCheckOutTime,jdbcType=TIMESTAMP}, #{roomCheckOutRemainPrice,jdbcType=DECIMAL}, 
+      #{roomCheckOutUserId,jdbcType=INTEGER}, #{roomCheckOutCreatedTime,jdbcType=TIMESTAMP}, 
+      #{roomCheckOutRoomCurrentId,jdbcType=BIGINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="site.aoba.hotelmanagement.infrastructure.models.RoomCheckOutModel">
+    update room_check_out
+    <set>
+      <if test="roomCheckOutTime != null">
+        room_check_out_time = #{roomCheckOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomCheckOutRemainPrice != null">
+        room_check_out_remain_price = #{roomCheckOutRemainPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="roomCheckOutUserId != null">
+        room_check_out_user_id = #{roomCheckOutUserId,jdbcType=INTEGER},
+      </if>
+      <if test="roomCheckOutCreatedTime != null">
+        room_check_out_created_time = #{roomCheckOutCreatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomCheckOutRoomCurrentId != null">
+        room_check_out_room_current_id = #{roomCheckOutRoomCurrentId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where room_check_out_id = #{roomCheckOutId,jdbcType=BIGINT}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from room_check_out
+  </select>
+</mapper>

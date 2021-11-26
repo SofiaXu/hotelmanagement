@@ -1,10 +1,12 @@
 package site.aoba.hotelmanagement.architecture.domain.repository;
 
+import org.springframework.stereotype.Repository;
 import site.aoba.hotelmanagement.architecture.domain.model.IEntity;
 
 import java.util.List;
 import java.util.function.Predicate;
 
+@Repository
 public interface IRepository<TId, TEntity extends IEntity<TId>> {
     List<TEntity> getEntities(long pageSize, long pageIndex);
 

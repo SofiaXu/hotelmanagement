@@ -1,7 +1,7 @@
 package site.aoba.hotelmanagement.domain.repository;
 
 import site.aoba.hotelmanagement.architecture.domain.repository.IRepository;
-import site.aoba.hotelmanagement.domain.models.Good;
+import site.aoba.hotelmanagement.domain.models.Book;
 
-public interface GoodRepository extends IRepository<Long, Good> {
+public interface IBookRepository extends IRepository<Long, Book> {
 }

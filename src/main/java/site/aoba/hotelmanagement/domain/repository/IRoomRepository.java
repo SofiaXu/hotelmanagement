@@ -1,7 +1,7 @@
 package site.aoba.hotelmanagement.domain.repository;
 
 import site.aoba.hotelmanagement.architecture.domain.repository.IRepository;
-import site.aoba.hotelmanagement.domain.models.Charge;
+import site.aoba.hotelmanagement.domain.models.Room;
 
-public interface ChargeRepository extends IRepository<Long, Charge> {
+public interface IRoomRepository extends IRepository<Integer, Room> {
 }

@@ -8,9 +8,9 @@ import java.util.function.Predicate;
 
 @Repository
 public interface IRepository<TId, TEntity extends IEntity<TId>> {
-    List<TEntity> getEntities(long pageSize, long pageIndex);
+    List<TEntity> getEntities(int pageSize, int pageIndex);
 
-    List<TEntity> getEntities(long pageSize, long pageIndex, boolean refresh);
+    List<TEntity> getEntities(int pageSize, int pageIndex, boolean refresh);
 
     TEntity getEntityById(TId id);
 
@@ -22,9 +22,9 @@ public interface IRepository<TId, TEntity extends IEntity<TId>> {
 
     void deleteEntity(TId id);
 
-    List<TEntity> searchEntities(Predicate<TEntity> entityPredicate, long pageSize, long pageIndex);
+    List<TEntity> searchEntities(Predicate<TEntity> entityPredicate, int pageSize, int pageIndex);
 
-    List<TEntity> searchEntities(Predicate<TEntity> entityPredicate, long pageSize, long pageIndex, boolean refresh);
+    List<TEntity> searchEntities(Predicate<TEntity> entityPredicate, int pageSize, int pageIndex, boolean refresh);
 
     void clearItemCache(TId id);
 

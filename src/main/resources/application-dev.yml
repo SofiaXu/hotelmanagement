@@ -29,7 +29,7 @@ management:
 
 mybatis:
   mapper-locations: classpath:mappers/*Mapper.xml
-  type-aliases-package: site.aoba.devicemanagement2api.infrastructure.mappers
+  type-aliases-package: site.aoba.hotelmanagement.infrastructure.mappers
   check-config-location: true
 
 site:
@@ -40,3 +40,9 @@ site:
         issuer: site.aoba.devicemanagement2api
       password:
         salt: "773C542543664C65B30E713CFD5845E6"
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

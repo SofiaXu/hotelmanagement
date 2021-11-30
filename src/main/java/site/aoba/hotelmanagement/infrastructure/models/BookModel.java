@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Data
 public class BookModel implements IEntityModel<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 订房编号
      */

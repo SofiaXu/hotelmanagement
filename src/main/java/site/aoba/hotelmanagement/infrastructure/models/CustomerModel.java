@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Data
 public class CustomerModel implements IEntityModel<Integer> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 客户编号
      */

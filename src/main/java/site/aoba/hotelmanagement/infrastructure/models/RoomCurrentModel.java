@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Data
 public class RoomCurrentModel implements IEntityModel<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 房间入住编号
      */

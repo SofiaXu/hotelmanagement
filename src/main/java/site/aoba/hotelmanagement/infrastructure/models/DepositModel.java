@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Data
 public class DepositModel implements IEntityModel<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 订金编号
      */

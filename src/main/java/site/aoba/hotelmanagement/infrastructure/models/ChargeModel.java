@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  */
 @Data
 public class ChargeModel implements IEntityModel<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 费用编号
      */

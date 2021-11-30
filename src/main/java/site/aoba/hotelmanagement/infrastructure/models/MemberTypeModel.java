@@ -10,7 +10,7 @@ import site.aoba.hotelmanagement.architecture.infrastructure.model.IEntityModel;
  */
 @Data
 public class MemberTypeModel implements IEntityModel<Integer> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 会员类型编号
      */

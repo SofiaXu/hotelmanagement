@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  */
 @Data
 public class GoodModel implements IEntityModel<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 货物编号
      */

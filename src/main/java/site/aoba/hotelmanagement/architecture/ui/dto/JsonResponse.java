@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JsonResponseContent<T> implements Serializable {
+public class JsonResponse<T> implements Serializable {
     private int statusCode;
     private String message;
     private Date timestamp;

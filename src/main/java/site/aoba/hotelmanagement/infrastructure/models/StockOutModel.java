@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Data
 public class StockOutModel implements IEntityModel<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 出库编号
      */

@@ -16,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Customer implements IEntity<Integer> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 客户编号
      */

@@ -17,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoomPriceHistory implements IEntity<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 房间价格历史编号
      */

@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Room implements IEntity<Integer> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 房间编号
      */

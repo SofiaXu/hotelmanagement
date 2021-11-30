@@ -16,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book implements IEntity<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 订房编号
      */

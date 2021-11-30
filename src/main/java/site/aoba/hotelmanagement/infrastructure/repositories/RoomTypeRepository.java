@@ -12,17 +12,17 @@ import org.springframework.cache.annotation.Cacheable;
 
 import lombok.RequiredArgsConstructor;
 import lombok.val;
-import site.aoba.hotelmanagement.domain.models.User;
-import site.aoba.hotelmanagement.domain.repository.IUserRepository;
-import site.aoba.hotelmanagement.infrastructure.mappers.UserMapper;
-import site.aoba.hotelmanagement.infrastructure.models.UserModel;
+import site.aoba.hotelmanagement.domain.models.RoomType;
+import site.aoba.hotelmanagement.domain.repository.IRoomTypeRepository;
+import site.aoba.hotelmanagement.infrastructure.mappers.RoomTypeMapper;
+import site.aoba.hotelmanagement.infrastructure.models.RoomTypeModel;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class UserRepository implements IUserRepository {
-    private final UserMapper mapper;
+public class RoomTypeRepository implements IRoomTypeRepository {
+    private final RoomTypeMapper mapper;
 
     @Override
-    public List<User> getEntities(int pageSize, int pageIndex) {
+    public List<RoomType> getEntities(int pageSize, int pageIndex) {
         PageHelper.startPage(pageIndex, pageSize);
         return mapper
                 .selectAll().stream().map(x -> toEntity(x))
@@ -30,7 +30,7 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public List<User> getEntities(int pageSize, int pageIndex, boolean refresh) {
+    public List<RoomType> getEntities(int pageSize, int pageIndex, boolean refresh) {
         if (refresh)
             clearItemsCache();
         return getEntities(pageSize, pageIndex);
@@ -38,7 +38,7 @@ public class UserRepository implements IUserRepository {
 
     @Override
     @Cacheable(key = "#id", unless = "#result == null")
-    public User getEntityById(Integer id) {
+    public RoomType getEntityById(Integer id) {
         val x = mapper.selectByPrimaryKey(id);
         if (x == null)
             return null;
@@ -46,7 +46,7 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public User getEntityById(Integer id, boolean refresh) {
+    public RoomType getEntityById(Integer id, boolean refresh) {
         if (refresh)
             clearItemCache(id);
 
@@ -54,12 +54,12 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public void updateEntity(User entity) {
+    public void updateEntity(RoomType entity) {
         mapper.updateByPrimaryKey(toModel(entity));
     }
 
     @Override
-    public void createEntity(User entity) {
+    public void createEntity(RoomType entity) {
         mapper.insert(toModel(entity));
     }
 
@@ -70,14 +70,15 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public List<User> searchEntities(Predicate<User> entityPredicate, int pageSize, int pageIndex) {
+    public List<RoomType> searchEntities(Predicate<RoomType> entityPredicate, int pageSize, int pageIndex) {
         return mapper.selectAll().stream()
                 .map(x -> toEntity(x))
                 .filter(entityPredicate).collect(Collectors.toList());
     }
 
     @Override
-    public List<User> searchEntities(Predicate<User> entityPredicate, int pageSize, int pageIndex, boolean refresh) {
+    public List<RoomType> searchEntities(Predicate<RoomType> entityPredicate, int pageSize, int pageIndex,
+            boolean refresh) {
         if (refresh)
             clearItemsCache();
         return searchEntities(entityPredicate, pageSize, pageIndex);
@@ -93,27 +94,19 @@ public class UserRepository implements IUserRepository {
     public void clearItemsCache() {
     }
 
-    @Override
-    public void changePassword(User user) {
-        UserModel userModel = new UserModel();
-        userModel.setUserPasswordHash(user.getUserPasswordHash());
-        userModel.setUserId(user.getId());
-        mapper.updateByPrimaryKey(userModel);
-    }
-
-    private UserModel toModel(User entity) {
-        val x = new UserModel();
+    private RoomTypeModel toModel(RoomType entity) {
+        val x = new RoomTypeModel();
         x.setId(entity.getId());
-        x.setUserName(entity.getUserName());
-        x.setUserRealName(entity.getUserRealName());
-        x.setUserTypeId(entity.getUserTypeId());
-        x.setUserAge(entity.getUserAge());
-        x.setUserGender(entity.getUserGender());
+        x.setRoomTypeName(entity.getRoomTypeName());
+
         return x;
     }
 
-    private User toEntity(UserModel x) {
-        return new User(x.getId(), x.getUserName(), x.getUserRealName(),
-        x.getUserTypeId(), x.getUserAge(), x.getUserGender(), x.getUserPasswordHash());
+    private RoomType toEntity(RoomTypeModel x) {
+        return new RoomType(
+                x.getId(),
+                x.getRoomTypeName()
+
+        );
     }
 }

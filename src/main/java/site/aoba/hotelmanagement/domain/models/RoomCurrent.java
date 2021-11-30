@@ -16,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoomCurrent implements IEntity<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 房间入住编号
      */

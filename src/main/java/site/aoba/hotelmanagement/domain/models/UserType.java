@@ -14,7 +14,7 @@ import site.aoba.hotelmanagement.architecture.domain.model.IEntity;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserType implements IEntity<Integer> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 用户类型编号
      */

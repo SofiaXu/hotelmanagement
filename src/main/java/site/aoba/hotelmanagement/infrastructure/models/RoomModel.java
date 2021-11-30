@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  */
 @Data
 public class RoomModel implements IEntityModel<Integer> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 房间编号
      */

@@ -17,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StockOut implements IEntity<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 出库编号
      */

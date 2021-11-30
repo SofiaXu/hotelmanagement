@@ -17,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoomCheckOut implements IEntity<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 退房编号
      */

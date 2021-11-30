@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Charge implements IEntity<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 费用编号
      */

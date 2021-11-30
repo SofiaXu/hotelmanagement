@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Data
 public class RoomPriceHistoryModel implements IEntityModel<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 房间价格历史编号
      */

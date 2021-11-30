@@ -12,17 +12,17 @@ import org.springframework.cache.annotation.Cacheable;
 
 import lombok.RequiredArgsConstructor;
 import lombok.val;
-import site.aoba.hotelmanagement.domain.models.User;
-import site.aoba.hotelmanagement.domain.repository.IUserRepository;
-import site.aoba.hotelmanagement.infrastructure.mappers.UserMapper;
-import site.aoba.hotelmanagement.infrastructure.models.UserModel;
+import site.aoba.hotelmanagement.domain.models.StockOut;
+import site.aoba.hotelmanagement.domain.repository.IStockOutRepository;
+import site.aoba.hotelmanagement.infrastructure.mappers.StockOutMapper;
+import site.aoba.hotelmanagement.infrastructure.models.StockOutModel;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class UserRepository implements IUserRepository {
-    private final UserMapper mapper;
+public class StockOutRepository implements IStockOutRepository {
+    private final StockOutMapper mapper;
 
     @Override
-    public List<User> getEntities(int pageSize, int pageIndex) {
+    public List<StockOut> getEntities(int pageSize, int pageIndex) {
         PageHelper.startPage(pageIndex, pageSize);
         return mapper
                 .selectAll().stream().map(x -> toEntity(x))
@@ -30,7 +30,7 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public List<User> getEntities(int pageSize, int pageIndex, boolean refresh) {
+    public List<StockOut> getEntities(int pageSize, int pageIndex, boolean refresh) {
         if (refresh)
             clearItemsCache();
         return getEntities(pageSize, pageIndex);
@@ -38,7 +38,7 @@ public class UserRepository implements IUserRepository {
 
     @Override
     @Cacheable(key = "#id", unless = "#result == null")
-    public User getEntityById(Integer id) {
+    public StockOut getEntityById(Long id) {
         val x = mapper.selectByPrimaryKey(id);
         if (x == null)
             return null;
@@ -46,7 +46,7 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public User getEntityById(Integer id, boolean refresh) {
+    public StockOut getEntityById(Long id, boolean refresh) {
         if (refresh)
             clearItemCache(id);
 
@@ -54,30 +54,31 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public void updateEntity(User entity) {
+    public void updateEntity(StockOut entity) {
         mapper.updateByPrimaryKey(toModel(entity));
     }
 
     @Override
-    public void createEntity(User entity) {
+    public void createEntity(StockOut entity) {
         mapper.insert(toModel(entity));
     }
 
     @Override
-    public void deleteEntity(Integer id) {
+    public void deleteEntity(Long id) {
         mapper.deleteByPrimaryKey(id);
         clearItemCache(id);
     }
 
     @Override
-    public List<User> searchEntities(Predicate<User> entityPredicate, int pageSize, int pageIndex) {
+    public List<StockOut> searchEntities(Predicate<StockOut> entityPredicate, int pageSize, int pageIndex) {
         return mapper.selectAll().stream()
                 .map(x -> toEntity(x))
                 .filter(entityPredicate).collect(Collectors.toList());
     }
 
     @Override
-    public List<User> searchEntities(Predicate<User> entityPredicate, int pageSize, int pageIndex, boolean refresh) {
+    public List<StockOut> searchEntities(Predicate<StockOut> entityPredicate, int pageSize, int pageIndex,
+            boolean refresh) {
         if (refresh)
             clearItemsCache();
         return searchEntities(entityPredicate, pageSize, pageIndex);
@@ -85,7 +86,7 @@ public class UserRepository implements IUserRepository {
 
     @Override
     @CacheEvict(key = "#id")
-    public void clearItemCache(Integer id) {
+    public void clearItemCache(Long id) {
     }
 
     @Override
@@ -93,27 +94,29 @@ public class UserRepository implements IUserRepository {
     public void clearItemsCache() {
     }
 
-    @Override
-    public void changePassword(User user) {
-        UserModel userModel = new UserModel();
-        userModel.setUserPasswordHash(user.getUserPasswordHash());
-        userModel.setUserId(user.getId());
-        mapper.updateByPrimaryKey(userModel);
-    }
-
-    private UserModel toModel(User entity) {
-        val x = new UserModel();
+    private StockOutModel toModel(StockOut entity) {
+        val x = new StockOutModel();
         x.setId(entity.getId());
-        x.setUserName(entity.getUserName());
-        x.setUserRealName(entity.getUserRealName());
-        x.setUserTypeId(entity.getUserTypeId());
-        x.setUserAge(entity.getUserAge());
-        x.setUserGender(entity.getUserGender());
+        x.setStockOutGoodId(entity.getStockOutGoodId());
+        x.setStockOutTime(entity.getStockOutTime());
+        x.setStockOutUserId(entity.getStockOutUserId());
+        x.setStockOutStockInId(entity.getStockOutStockInId());
+        x.setStockOutDestination(entity.getStockOutDestination());
+        x.setStockOutCount(entity.getStockOutCount());
+
         return x;
     }
 
-    private User toEntity(UserModel x) {
-        return new User(x.getId(), x.getUserName(), x.getUserRealName(),
-        x.getUserTypeId(), x.getUserAge(), x.getUserGender(), x.getUserPasswordHash());
+    private StockOut toEntity(StockOutModel x) {
+        return new StockOut(
+                x.getId(),
+                x.getStockOutGoodId(),
+                x.getStockOutTime(),
+                x.getStockOutUserId(),
+                x.getStockOutStockInId(),
+                x.getStockOutDestination(),
+                x.getStockOutCount()
+
+        );
     }
 }

@@ -17,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StockIn implements IEntity<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 入库编号
      */

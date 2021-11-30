@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Good implements IEntity<Long> {
-    private static final long serialVersionUID = 1L;
+
     /**
      * 货物编号
      */
